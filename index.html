@@ -16,6 +16,14 @@
         border: 1px solid #555;
         cursor: pointer;
     }
+
+    .x::before {
+        content: "X";
+    }
+
+    .o::before {
+        content: "O";
+    }
     </style>
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
 </head>
@@ -28,11 +36,16 @@
     <script type="text/javascript">
     $(document).ready(function() {
         var cells;
+        var moves = [];
+        // debugger;
 
         function refresh() {
-            $("#playground").remove("table");
+            $("#playground").empty();
             var table = $("<table>")
             var tr;
+            var td_id = $(this).attr("id");
+            // debugger;
+
             $.each(cells, function(i) {
                 if (!(i % 3) || !tr) {
                     tr = $("<tr>");
@@ -42,11 +55,39 @@
                 td.html(cells[i]);
                 td.click(function() {
                     $("#result").text("You've clicked on cell number " + $(this).attr("id").split("_")[1] + ".");
-                })
-                table.append(tr.append(td));
+                    if (cells[$(this).attr("id")]) {
+                        return;
+                    }
+                    if (moves.length % 2) {
+                        $("#" + $(this).attr("id")).attr("class", "x");
+                        moves.push("x");
+                        cells[$(this).attr("id")] = "x";
+                    } else {
+                        $("#" + $(this).attr("id")).attr("class", "o");
+                        moves.push("o");
+                        cells[$(this).attr("id")] = "o";
+                    }
+                    // if (moves.length >= 5) { // winner(); // } }) table.append(tr.append(td));
             });
             $("#playground").append(table);
         }
+
+        // function winner() {
+        //     if ($("#cell_0").hasClass("x") && ("#cell_1").hasClass("x") && ("#cell_2").hasClass("x") ||
+        //         ("#cell_3").hasClass("x") && ("#cell_4").hasClass("x") && ("#cell_5").hasClass("x") ||
+        //         ("#cell_6").hasClass("x") && ("#cell_7").hasClass("x") && ("#cell_8").hasClass("x") ||
+        //         ("#cell_0").hasClass("x") && ("#cell_3").hasClass("x") && ("#cell_6").hasClass("x") ||
+        //         ("#cell_1").hasClass("x") && ("#cell_4").hasClass("x") && ("#cell_7").hasClass("x") ||
+        //         ("#cell_2").hasClass("x") && ("#cell_5").hasClass("x") && ("#cell_8").hasClass("x") ||
+        //         ("#cell_0").hasClass("x") && ("#cell_4").hasClass("x") && ("#cell_8").hasClass("x") ||
+        //         ("#cell_2").hasClass("x") && ("#cell_4").hasClass("x") && ("#cell_7").hasClass("x")) {
+        //         alert("winner is x");
+        //     } else {
+        //         alert("winner is o");
+        //     }
+        // }
+
+
 
         $("#start").click(function() {
             cells = ["", "", "", "", "", "", "", "", ""];
