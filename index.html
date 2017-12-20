@@ -58,7 +58,8 @@
                     if (cells[$(this).attr("id")]) {
                         return;
                     }
-                    if (moves.length % 2) {
+                    // debugger;
+                    if (moves.length % 2 == 0) {
                         $("#" + $(this).attr("id")).attr("class", "x");
                         moves.push("x");
                         cells[$(this).attr("id")] = "x";
@@ -67,25 +68,40 @@
                         moves.push("o");
                         cells[$(this).attr("id")] = "o";
                     }
-                    // if (moves.length >= 5) { // winner(); // } }) table.append(tr.append(td));
+                    if (moves.length >= 5) {
+                        winner()
+                    }
+                    // if (moves.length >= 5) { // winner(); // }
+
+                })
+                table.append(tr.append(td));
             });
             $("#playground").append(table);
         }
 
-        // function winner() {
-        //     if ($("#cell_0").hasClass("x") && ("#cell_1").hasClass("x") && ("#cell_2").hasClass("x") ||
-        //         ("#cell_3").hasClass("x") && ("#cell_4").hasClass("x") && ("#cell_5").hasClass("x") ||
-        //         ("#cell_6").hasClass("x") && ("#cell_7").hasClass("x") && ("#cell_8").hasClass("x") ||
-        //         ("#cell_0").hasClass("x") && ("#cell_3").hasClass("x") && ("#cell_6").hasClass("x") ||
-        //         ("#cell_1").hasClass("x") && ("#cell_4").hasClass("x") && ("#cell_7").hasClass("x") ||
-        //         ("#cell_2").hasClass("x") && ("#cell_5").hasClass("x") && ("#cell_8").hasClass("x") ||
-        //         ("#cell_0").hasClass("x") && ("#cell_4").hasClass("x") && ("#cell_8").hasClass("x") ||
-        //         ("#cell_2").hasClass("x") && ("#cell_4").hasClass("x") && ("#cell_7").hasClass("x")) {
-        //         alert("winner is x");
-        //     } else {
-        //         alert("winner is o");
-        //     }
-        // }
+        function winner() {
+            if ($("#cell_0").hasClass("x") && $("#cell_1").hasClass("x") && $("#cell_2").hasClass("x") ||
+                $("#cell_3").hasClass("x") && $("#cell_4").hasClass("x") && $("#cell_5").hasClass("x") ||
+                $("#cell_6").hasClass("x") && $("#cell_7").hasClass("x") && $("#cell_8").hasClass("x") ||
+                $("#cell_0").hasClass("x") && $("#cell_3").hasClass("x") && $("#cell_6").hasClass("x") ||
+                $("#cell_1").hasClass("x") && $("#cell_4").hasClass("x") && $("#cell_7").hasClass("x") ||
+                $("#cell_2").hasClass("x") && $("#cell_5").hasClass("x") && $("#cell_8").hasClass("x") ||
+                $("#cell_0").hasClass("x") && $("#cell_4").hasClass("x") && $("#cell_8").hasClass("x") ||
+                $("#cell_2").hasClass("x") && $("#cell_4").hasClass("x") && $("#cell_7").hasClass("x")) {
+                alert("winner is x");
+            } else if ($("#cell_0").hasClass("o") && $("#cell_1").hasClass("o") && $("#cell_2").hasClass("o") ||
+                $("#cell_3").hasClass("o") && $("#cell_4").hasClass("o") && $("#cell_5").hasClass("o") ||
+                $("#cell_6").hasClass("o") && $("#cell_7").hasClass("o") && $("#cell_8").hasClass("o") ||
+                $("#cell_0").hasClass("o") && $("#cell_3").hasClass("o") && $("#cell_6").hasClass("o") ||
+                $("#cell_1").hasClass("o") && $("#cell_4").hasClass("o") && $("#cell_7").hasClass("o") ||
+                $("#cell_2").hasClass("o") && $("#cell_5").hasClass("o") && $("#cell_8").hasClass("o") ||
+                $("#cell_0").hasClass("o") && $("#cell_4").hasClass("o") && $("#cell_8").hasClass("o") ||
+                $("#cell_2").hasClass("o") && $("#cell_4").hasClass("o") && $("#cell_7").hasClass("o")) {
+                alert("winner is o");
+            } else {
+                alert("nereseno")
+            }
+        }
 
 
 
