@@ -36,7 +36,7 @@
     <script type="text/javascript">
     $(document).ready(function() {
         var cells;
-        var moves = [];
+        var moves;
         // debugger;
 
         function refresh() {
@@ -59,6 +59,7 @@
                         return;
                     }
                     // debugger;
+                    // var cls = moves.length % 2 == 0 ? "x" : "o"; // $("#" + $(this).attr("id")).attr("class", cls); // moves.push(cls); // cells[$(this).attr("id")] = cls;
                     if (moves.length % 2 == 0) {
                         $("#" + $(this).attr("id")).attr("class", "x");
                         moves.push("x");
@@ -107,6 +108,7 @@
 
         $("#start").click(function() {
             cells = ["", "", "", "", "", "", "", "", ""];
+            moves = ["", "", "", "", "", "", "", "", ""];
             refresh();
         })
 
